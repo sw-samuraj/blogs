@@ -1,0 +1,42 @@
+plugins {
+    id 'war'
+    id 'org.akhikhl.gretty' version '1.4.2'
+}
+
+group = 'cz.swsamuraj.websocket'
+version = '0.1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+ext {
+    wicketVersion = '6.5.0'
+    wicketWebsocketVersion = '0.8'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.apache.wicket:wicket-core:${wicketVersion}"
+    compile "org.apache.wicket:wicket-extensions:${wicketVersion}"
+    compile "org.apache.wicket:wicket-native-websocket-core:${wicketWebsocketVersion}"
+    compile "org.apache.wicket:wicket-native-websocket-jetty:${wicketWebsocketVersion}"
+    compile 'org.slf4j:slf4j-log4j12:1.6.4'
+    compile 'log4j:log4j:1.2.16'
+    gretty  'org.eclipse.jetty.websocket:websocket-server:7.6.16.v2014090'
+    // compile 'org.apache.logging.log4j:log4j-core:2.8.1'
+}
+
+war {
+    baseName = 'deep-thought'
+}
+
+gretty {
+    servletContainer = 'jetty7'
+    httpPort = 4040
+    contextPath = 'deep-thought'
+    debugSuspend = false
+}
+

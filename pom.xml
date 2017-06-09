@@ -1,38 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor 
+	license agreements. See the NOTICE file distributed with this work for additional 
+	information regarding copyright ownership. The ASF licenses this file to 
+	You under the Apache License, Version 2.0 (the "License"); you may not use 
+	this file except in compliance with the License. You may obtain a copy of 
+	the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required 
+	by applicable law or agreed to in writing, software distributed under the 
+	License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS 
+	OF ANY KIND, either express or implied. See the License for the specific 
+	language governing permissions and limitations under the License. -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
 	<modelVersion>4.0.0</modelVersion>
+
 	<groupId>com.wicketinaction</groupId>
-	<artifactId>blogs</artifactId>
-	<packaging>pom</packaging>
+	<artifactId>wicket6-websocket-broadcast</artifactId>
+	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
-	<name>blogs</name>
-	
-	<modules>
-		<module>request-mappers</module>
-		<module>wicket6-ajax-demo</module>
-		<module>wicket6-native-websockets</module>
-		<module>wicket6-websocket-broadcast</module>
-		<module>wicket6-resource-management</module>
-		<module>file-upload</module>
-		<module>functional-qunit</module>
-		<module>wicket6-replace-with-effect</module>
-		<module>wicket-nodejs-build</module>
-	    <module>ajax-history</module>
-  	</modules>
+	<!-- TODO project name -->
+	<name>wicket6-websocket-broadcast</name>
+	<!-- <organization> <name>company name</name> <url>company url</url> </organization> -->
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<properties>
+		<!--<wicket.version>6.5.0</wicket.version>-->
+		<wicket.version>8.0.0-M6</wicket.version>
+		<!--<wicket-websocket.version>0.8</wicket-websocket.version>-->
+		<wicket-websocket.version>7.6.0</wicket-websocket.version>
+		<jetty.version>7.6.3.v20120416</jetty.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<dependencies>
+		<!-- WICKET DEPENDENCIES -->
+		<dependency>
+			<groupId>org.apache.wicket</groupId>
+			<artifactId>wicket-core</artifactId>
+			<version>${wicket.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.wicket</groupId>
+			<artifactId>wicket-extensions</artifactId>
+			<version>${wicket.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.wicket</groupId>
+			<artifactId>wicket-native-websocket-core</artifactId>
+			<version>${wicket-websocket.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.wicket</groupId>
+			<artifactId>wicket-native-websocket-jetty</artifactId>
+			<version>${wicket-websocket.version}</version>
+		</dependency>
+
+		<!-- LOGGING DEPENDENCIES - LOG4J -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.6.4</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.16</version>
+		</dependency>
+	</dependencies>
 	<build>
-    	<pluginManagement>
-    		<plugins>
-    			<plugin>
-	    			<groupId>org.apache.maven.plugins</groupId>
-    				<artifactId>maven-resources-plugin</artifactId>
-    				<version>2.6</version>
-    			</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-jar-plugin</artifactId>
-					<version>2.3.1</version>
-				</plugin>
-    		</plugins>
-    	</pluginManagement>
-    </build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**</include>
+				</includes>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<inherited>true</inherited>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+					<encoding>UTF-8</encoding>
+					<showWarnings>true</showWarnings>
+					<showDeprecation>true</showDeprecation>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>${jetty.version}</version>
+				<configuration>
+					<connectors>
+						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+							<port>8080</port>
+							<maxIdleTime>3600000</maxIdleTime>
+						</connector>
+					</connectors>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
