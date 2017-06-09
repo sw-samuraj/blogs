@@ -33,7 +33,9 @@
 		<wicket.version>8.0.0-M6</wicket.version>
 		<!--<wicket-websocket.version>0.8</wicket-websocket.version>-->
 		<wicket-websocket.version>7.6.0</wicket-websocket.version>
-		<jetty.version>7.6.3.v20120416</jetty.version>
+		<!--<jetty.version>7.6.3.v20120416</jetty.version>-->
+		<!--<jetty.version>9.4.5.v20170502</jetty.version>-->
+		<jetty.version>9.2.20.v20161216</jetty.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
@@ -55,8 +57,10 @@
 		</dependency>
 		<dependency>
 			<groupId>org.apache.wicket</groupId>
-			<artifactId>wicket-native-websocket-jetty</artifactId>
-			<version>${wicket-websocket.version}</version>
+			<!--<artifactId>wicket-native-websocket-jetty9</artifactId>-->
+			<artifactId>wicket-native-websocket-javax</artifactId>
+			<!--<version>${wicket-websocket.version}</version>-->
+			<version>${wicket.version}</version>
 		</dependency>
 
 		<!-- LOGGING DEPENDENCIES - LOG4J -->
@@ -101,16 +105,27 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
+				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>${jetty.version}</version>
+<!--				<dependencies>
+					<dependency>
+						<groupId>org.eclipse.jetty</groupId>
+						<artifactId>jetty-io</artifactId>
+						<version>${jetty.version}</version>
+					</dependency>
+				</dependencies>-->
 				<configuration>
-					<connectors>
+					<httpConnector>
+						<port>4040</port>
+					</httpConnector>
+<!--					<connectors>
 						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-							<port>8080</port>
+							&lt;!&ndash;<port>8080</port>&ndash;&gt;
+							<port>4040</port>
 							<maxIdleTime>3600000</maxIdleTime>
 						</connector>
-					</connectors>
+					</connectors>-->
 				</configuration>
 			</plugin>
 		</plugins>

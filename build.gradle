@@ -34,7 +34,6 @@ war {
 }
 
 gretty {
-    servletContainer = 'jetty7'
     httpPort = 4040
     contextPath = 'deep-thought'
     debugSuspend = false
