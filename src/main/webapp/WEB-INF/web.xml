@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
 
-	<display-name>wicket6-websocket-broadcast</display-name>
+	<display-name>wicket-websocket-broadcast</display-name>
 
 	<filter>
 		<filter-name>wicket-websocket-broadcast</filter-name>

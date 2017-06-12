@@ -57,20 +57,6 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-			</resource>
-			<resource>
-				<directory>src/main/java</directory>
-				<includes>
-					<include>**</include>
-				</includes>
-				<excludes>
-					<exclude>**/*.java</exclude>
-				</excludes>
-			</resource>
-		</resources>
 		<plugins>
 			<plugin>
 				<inherited>true</inherited>
@@ -93,6 +79,9 @@
 					<httpConnector>
 						<port>4040</port>
 					</httpConnector>
+					<webApp>
+						<contextPath>/deep-thought</contextPath>
+					</webApp>
 				</configuration>
 			</plugin>
 		</plugins>
