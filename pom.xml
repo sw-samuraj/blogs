@@ -15,12 +15,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.wicketinaction</groupId>
-	<artifactId>wicket6-websocket-broadcast</artifactId>
+	<artifactId>wicket-websocket-broadcast</artifactId>
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
-	<!-- TODO project name -->
-	<name>wicket6-websocket-broadcast</name>
-	<!-- <organization> <name>company name</name> <url>company url</url> </organization> -->
+	<name>wicket-websocket-broadcast</name>
 	<licenses>
 		<license>
 			<name>The Apache Software License, Version 2.0</name>
@@ -29,13 +27,8 @@
 		</license>
 	</licenses>
 	<properties>
-		<!--<wicket.version>6.5.0</wicket.version>-->
 		<wicket.version>8.0.0-M6</wicket.version>
-		<!--<wicket-websocket.version>0.8</wicket-websocket.version>-->
-		<wicket-websocket.version>7.6.0</wicket-websocket.version>
-		<!--<jetty.version>7.6.3.v20120416</jetty.version>-->
-		<!--<jetty.version>9.4.5.v20170502</jetty.version>-->
-		<jetty.version>9.2.20.v20161216</jetty.version>
+		<jetty.version>9.4.5.v20170502</jetty.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
@@ -47,19 +40,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.apache.wicket</groupId>
-			<artifactId>wicket-extensions</artifactId>
-			<version>${wicket.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.wicket</groupId>
-			<artifactId>wicket-native-websocket-core</artifactId>
-			<version>${wicket-websocket.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.wicket</groupId>
-			<!--<artifactId>wicket-native-websocket-jetty9</artifactId>-->
 			<artifactId>wicket-native-websocket-javax</artifactId>
-			<!--<version>${wicket-websocket.version}</version>-->
 			<version>${wicket.version}</version>
 		</dependency>
 
@@ -67,12 +48,12 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.6.4</version>
+			<version>1.7.25</version>
 		</dependency>
 		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.16</version>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.8.2</version>
 		</dependency>
 	</dependencies>
 	<build>
@@ -95,10 +76,10 @@
 				<inherited>true</inherited>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.5.1</version>
+				<version>3.6.1</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.8</source>
+					<target>1.8</target>
 					<encoding>UTF-8</encoding>
 					<showWarnings>true</showWarnings>
 					<showDeprecation>true</showDeprecation>
@@ -108,24 +89,10 @@
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>${jetty.version}</version>
-<!--				<dependencies>
-					<dependency>
-						<groupId>org.eclipse.jetty</groupId>
-						<artifactId>jetty-io</artifactId>
-						<version>${jetty.version}</version>
-					</dependency>
-				</dependencies>-->
 				<configuration>
 					<httpConnector>
 						<port>4040</port>
 					</httpConnector>
-<!--					<connectors>
-						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-							&lt;!&ndash;<port>8080</port>&ndash;&gt;
-							<port>4040</port>
-							<maxIdleTime>3600000</maxIdleTime>
-						</connector>
-					</connectors>-->
 				</configuration>
 			</plugin>
 		</plugins>
