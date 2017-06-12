@@ -1,5 +1,7 @@
 package com.wicketinaction;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.wicket.Application;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
@@ -10,13 +12,11 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.protocol.ws.WebSocketSettings;
 import org.apache.wicket.protocol.ws.api.WebSocketPushBroadcaster;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class AddContentAjaxPanel extends Panel
 {
 	private static final long serialVersionUID = 1L;
-	private static final Logger log = LoggerFactory.getLogger(AddContentAjaxPanel.class);
+	private static final Logger log = LogManager.getLogger(AddContentAjaxPanel.class);
 
 	public AddContentAjaxPanel(String id)
 	{

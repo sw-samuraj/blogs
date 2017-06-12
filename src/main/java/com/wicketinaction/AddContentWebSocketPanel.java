@@ -1,5 +1,7 @@
 package com.wicketinaction;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.wicket.Application;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;
@@ -11,8 +13,6 @@ import org.apache.wicket.protocol.ws.api.WebSocketPushBroadcaster;
 import org.apache.wicket.protocol.ws.api.WebSocketRequestHandler;
 import org.apache.wicket.protocol.ws.api.message.ConnectedMessage;
 import org.apache.wicket.protocol.ws.api.message.TextMessage;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Example of doing "ajax like submit" via web socket.
@@ -21,7 +21,7 @@ public class AddContentWebSocketPanel extends Panel
 {
 
 	private static final long serialVersionUID = 1L;
-	private static final Logger log = LoggerFactory.getLogger(AddContentWebSocketPanel.class);
+	private static final Logger log = LogManager.getLogger(AddContentWebSocketPanel.class);
 
 	public AddContentWebSocketPanel(String id)
 	{

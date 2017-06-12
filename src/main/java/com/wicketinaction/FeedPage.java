@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.wicket.Component;
 import org.apache.wicket.event.IEvent;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -17,12 +19,10 @@ import org.apache.wicket.protocol.ws.api.WebSocketRequestHandler;
 import org.apache.wicket.protocol.ws.api.event.WebSocketPushPayload;
 import org.apache.wicket.protocol.ws.api.message.ConnectedMessage;
 import org.apache.wicket.protocol.ws.api.message.TextMessage;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class FeedPage extends BasePage {
 	private static final long serialVersionUID = 1L;
-	private static final Logger log = LoggerFactory.getLogger(FeedPage.class);
+	private static final Logger log = LogManager.getLogger(FeedPage.class);
 	private List<String> messages = Collections
 			.synchronizedList(new LinkedList<String>());
 	private WebMarkupContainer container;
